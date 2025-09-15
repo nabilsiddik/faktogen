@@ -1,10 +1,6 @@
 import mongoose from "mongoose";
 
-const ProductFeatureSchema = new mongoose.Schema({
-
-})
-
-const ProductSchema = new mongoose.Schema({
+const productSchema = new mongoose.Schema({
     title: {
         type: String,
         required: true
@@ -35,4 +31,9 @@ const ProductSchema = new mongoose.Schema({
         of: String,
         default: {}
     }
+}, {
+    timestamps: true,
+    versionKey: false
 })
+
+export default mongoose.models.Product || mongoose.model('Product', productSchema)

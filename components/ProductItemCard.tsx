@@ -6,7 +6,7 @@ import { Badge } from './ui/badge'
 const ProductItemCard = ({ product }: any) => {
     return (
         <div className='text-center border py-10 rounded-md shadow-md'>
-            <Image className='mx-auto' src={product?.featuredImage} width={400} height={200} alt='product featured image' />
+            <Image className='mx-auto' src={product?.featuredImage} width={300} height={200} alt='product featured image' />
             <div className='mt-3 flex flex-col gap-3 items-center'>
                 <Badge>{product?.category}</Badge>
                 <h3 className='font-bold text-2xl'>{product?.title}</h3>

@@ -60,6 +60,10 @@ const data = {
         {
           title: "Add Product",
           url: "/dashboard/add-product",
+        },
+        {
+          title: "Product Category",
+          url: "/dashboard/product-category",
         }
       ],
     }

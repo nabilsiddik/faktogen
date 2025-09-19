@@ -19,7 +19,6 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
               orientation="vertical"
               className="mr-2 data-[orientation=vertical]:h-4"
             />
-            <h2 className="text-2xl font-bold">Admin Dashboard</h2>
           </div>
         </header>
         {children}

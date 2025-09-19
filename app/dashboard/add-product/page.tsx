@@ -16,6 +16,7 @@ import { Input } from '@/components/ui/input';
 import { useFieldArray, useForm } from 'react-hook-form'
 import { Textarea } from '@/components/ui/textarea'
 
+// Product zod schema
 export const productZodSchema = z.object({
   title: z.string("Title is required"),
   featuredImage: z.string("Featured image is required"),
@@ -31,6 +32,9 @@ export const productZodSchema = z.object({
     })
   ).optional()
 });
+
+
+
 const AddProduct = () => {
 
   const form = useForm<z.infer<typeof productZodSchema>>({
@@ -157,12 +161,16 @@ const AddProduct = () => {
             <div>
               {fields.map((field, index) => {
                 return <div className='flex items-center gap-3 mb-5'>
-                  <div className='flex items-center gap-5'>
-                    <Input type='text' placeholder='Feature Name' />
-                    <Input type='text' placeholder='Feature Value' />
+                  <div className='flex items-center gap-5 flex-6'>
+                    <Input
+                      {...form.register(`features.${index}.key`)}
+                    type='text' placeholder='Feature Name' />
+                    <Input
+                      {...form.register(`features.${index}.value`)}
+                    type='text' placeholder='Feature Value' />
                   </div>
 
-                  <Button variant='destructive' type='button' className='cursor-pointer' onClick={() => remove(index)}>X</Button>
+                  <Button variant='destructive' type='button' className='cursor-pointer flex-1' onClick={() => remove(index)}>X</Button>
                 </div>
               })}
             </div>

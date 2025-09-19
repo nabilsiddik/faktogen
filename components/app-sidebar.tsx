@@ -59,7 +59,7 @@ const data = {
       items: [
         {
           title: "Add Product",
-          url: "#",
+          url: "/dashboard/add-product",
         }
       ],
     }

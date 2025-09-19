@@ -1,5 +1,11 @@
 import mongoose from "mongoose";
 
+
+const featureSchema = new mongoose.Schema({
+    key: {type: String, required: true},
+    vlaue: {type: mongoose.Schema.Types.Mixed, required: true}
+})
+
 const productSchema = new mongoose.Schema({
     title: {
         type: String,
@@ -27,9 +33,8 @@ const productSchema = new mongoose.Schema({
         required: true,
     },
     features: {
-        type: Map,
-        of: String,
-        default: {}
+        type: [featureSchema],
+        default: []
     }
 }, {
     timestamps: true,

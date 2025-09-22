@@ -1,7 +1,7 @@
 export const products = [
   {
     id: 1,
-    featuredImage: "https://woodmart.xtemos.com/wp-content/uploads/2017/04/Product-3-1-430x491.jpg.webp",
+    featuredImage: "https://i5.walmartimages.com/dfw/4ff9c6c9-35d5/k2-_e90f3aa8-20c7-4367-8877-8780c329b9b0.v1.png?odnHeight=290&odnWidth=290&odnBg=FFFFFF",
     title: "Smartphone X100",
     shortDescription: "Powerful smartphone with sleek design.",
     longDescription: "The Smartphone X100 comes with an advanced processor, stunning display, long battery life, and modern design that fits perfectly in your hand.",
@@ -16,7 +16,7 @@ export const products = [
   },
   {
     id: 2,
-    featuredImage: "https://woodmart.xtemos.com/wp-content/uploads/2017/04/Product-13-1.jpg",
+    featuredImage: "https://i5.walmartimages.com/seo/FCMP-Outdoor-RC4000-50-Gallon-Outdoor-Rain-Water-Catcher-Barrel-Black_88a2ed44-4e1c-4e25-9ea8-09e06acaa7f8.75ce779cfccd045427b881cc3a975ce4.jpeg?odnHeight=573&odnWidth=573&odnBg=FFFFFF",
     title: "UltraBook Pro 15",
     shortDescription: "Lightweight laptop with premium build.",
     longDescription: "UltraBook Pro 15 is designed for professionals who need portability and performance, featuring a sleek aluminum body and fast SSD.",
@@ -31,7 +31,7 @@ export const products = [
   },
   {
     id: 3,
-    featuredImage: "https://woodmart.xtemos.com/wp-content/uploads/2017/04/Product-13-1.jpg",
+    featuredImage: "https://i5.walmartimages.com/dfw/4ff9c6c9-35d5/k2-_e90f3aa8-20c7-4367-8877-8780c329b9b0.v1.png?odnHeight=290&odnWidth=290&odnBg=FFFFFF",
     title: "SmartWatch Z3",
     shortDescription: "Stay connected with your wrist.",
     longDescription: "SmartWatch Z3 offers advanced health tracking, notifications, and customizable watch faces, making it the perfect fitness companion.",
@@ -46,7 +46,7 @@ export const products = [
   },
   {
     id: 4,
-    featuredImage: "https://woodmart.xtemos.com/wp-content/uploads/2017/04/Product-3-1-430x491.jpg.webp",
+    featuredImage: "https://i5.walmartimages.com/seo/FCMP-Outdoor-RC4000-50-Gallon-Outdoor-Rain-Water-Catcher-Barrel-Black_88a2ed44-4e1c-4e25-9ea8-09e06acaa7f8.75ce779cfccd045427b881cc3a975ce4.jpeg?odnHeight=573&odnWidth=573&odnBg=FFFFFF",
     title: "NoiseCancel 900",
     shortDescription: "Immersive sound with noise cancellation.",
     longDescription: "NoiseCancel 900 provides studio-quality sound with active noise cancellation technology for an uninterrupted audio experience.",
@@ -61,7 +61,7 @@ export const products = [
   },
   {
     id: 5,
-    featuredImage: "https://woodmart.xtemos.com/wp-content/uploads/2017/04/Product-3-1-430x491.jpg.webp",
+    featuredImage: "https://i5.walmartimages.com/seo/FCMP-Outdoor-RC4000-50-Gallon-Outdoor-Rain-Water-Catcher-Barrel-Black_88a2ed44-4e1c-4e25-9ea8-09e06acaa7f8.75ce779cfccd045427b881cc3a975ce4.jpeg?odnHeight=573&odnWidth=573&odnBg=FFFFFF",
     title: "Tab Master 11",
     shortDescription: "Compact tablet for work and play.",
     longDescription: "Tab Master 11 is a versatile tablet with a high-resolution display, powerful processor, and stylus support for creative tasks.",
@@ -76,7 +76,7 @@ export const products = [
   },
   {
     id: 6,
-    featuredImage: "https://woodmart.xtemos.com/wp-content/uploads/2017/04/Product-3-1-430x491.jpg.webp",
+    featuredImage: "https://i5.walmartimages.com/seo/FCMP-Outdoor-RC4000-50-Gallon-Outdoor-Rain-Water-Catcher-Barrel-Black_88a2ed44-4e1c-4e25-9ea8-09e06acaa7f8.75ce779cfccd045427b881cc3a975ce4.jpeg?odnHeight=573&odnWidth=573&odnBg=FFFFFF",
     title: "ProShot DSLR 500",
     shortDescription: "Capture moments like a pro.",
     longDescription: "ProShot DSLR 500 features a high-resolution sensor, fast autofocus, and 4K video recording to meet the needs of both amateurs and professionals.",

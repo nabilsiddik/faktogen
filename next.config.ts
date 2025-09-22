@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'woodmart.xtemos.com',
+        hostname: '**',
       }
     ],
   },

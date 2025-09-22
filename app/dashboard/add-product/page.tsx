@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button"
 import {
   Form,
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -15,6 +16,7 @@ import {
 import { Input } from '@/components/ui/input';
 import { useFieldArray, useForm } from 'react-hook-form'
 import { Textarea } from '@/components/ui/textarea'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 
 // Product zod schema
 export const productZodSchema = z.object({
@@ -120,6 +122,28 @@ const AddProduct = () => {
               />
             </div>
 
+            {/* select category  */}
+            <FormField
+              control={form.control}
+              name="category"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Category</FormLabel>
+                  <Select onValueChange={field.onChange} defaultValue={field.value}>
+                    <FormControl className='mb-5 w-full'>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select Category" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      <SelectItem value="m@example.com">m@example.com</SelectItem>
+                    </SelectContent>
+                  </Select>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
             {/* product short description  */}
             <FormField
               control={form.control}
@@ -164,10 +188,10 @@ const AddProduct = () => {
                   <div className='flex items-center gap-5 flex-6'>
                     <Input
                       {...form.register(`features.${index}.key`)}
-                    type='text' placeholder='Feature Name' />
+                      type='text' placeholder='Feature Name' />
                     <Input
                       {...form.register(`features.${index}.value`)}
-                    type='text' placeholder='Feature Value' />
+                      type='text' placeholder='Feature Value' />
                   </div>
 
                   <Button variant='destructive' type='button' className='cursor-pointer flex-1' onClick={() => remove(index)}>X</Button>

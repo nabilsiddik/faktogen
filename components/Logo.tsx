@@ -1,10 +1,10 @@
-import Image from 'next/image'
-import React from 'react'
+import { FaOpencart } from "react-icons/fa";
 
 const Logo = () => {
     return (
-        <div>
-            <Image src='/images/logo/faktogen-logo.png' width={250} height={200} alt='logo' />
+        <div className="text-white font-bold text-3xl flex items-center gap-3">
+            <span><FaOpencart /></span>
+            <h3>X-Mart</h3>
         </div>
     )
 }

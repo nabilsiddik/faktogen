@@ -33,7 +33,6 @@ const ProductCategory = () => {
     try{
       const result = await axiosInstance.post('/product-category', categoryData)
 
-      console.log('emni', result)
     }catch(error){
       console.log('Error while creating product category.')
     }

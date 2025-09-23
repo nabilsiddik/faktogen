@@ -18,10 +18,14 @@ import { Textarea } from '@/components/ui/textarea'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { productZodSchema } from '@/lib/validations/productZodSchema'
 import { createProduct } from '@/actions/create'
+import ProductFeaturedImageUploader from '@/components/ProductFeaturedImageUploader'
 
 const AddProduct = () => {
   const [categories, setCategories] = useState<any>()
   const [loading, setLoading] = useState(true);
+  const [featuredImage, setFeaturedImage] = useState<File | null>(null)
+
+  console.log(featuredImage)
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -189,9 +193,15 @@ const AddProduct = () => {
               )}
             />
 
+            <hr />
+
+            <div className='my-5'>
+              <ProductFeaturedImageUploader onChange={setFeaturedImage}/>
+            </div>
 
             <hr />
 
+             {/* add features  */}
             <div className='flex items-center justify-between mt-10 mb-5'>
               <h3 className='text-xl font-bold'>Add Features</h3>
               <Button className='cursor-pointer' type='button' onClick={addFeature}>+</Button>

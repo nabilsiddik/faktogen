@@ -2,7 +2,7 @@ import {z} from 'zod'
 
 export const productZodSchema = z.object({
   title: z.string("Title is required"),
-  featuredImage: z.string().optional(),
+  featuredImage: z.string('Featured Image is required'),
   shortDescription: z.string().optional(),
   longDescription: z.string().optional(),
   category: z.string("Category is required"),

@@ -9,7 +9,10 @@ const cartItemSchema = new mongoose.Schema({
     quantity: {
         type: Number,
         default: 1
-    }
+    },
+},{
+    timestamps: true,
+    versionKey: false
 })
 
 const userSchema = new mongoose.Schema({

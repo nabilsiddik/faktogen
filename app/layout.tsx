@@ -30,7 +30,6 @@ export default function RootLayout({
       <body
         className={`${montserrat.className} antialiased`}
       >
-        <Header />
         {children}
       </body>
     </html>

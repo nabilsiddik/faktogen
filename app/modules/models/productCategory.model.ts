@@ -11,4 +11,6 @@ const productCategorySchema = new mongoose.Schema({
     versionKey: false
 })
 
-export default mongoose.models.ProductCategory || mongoose.model('ProductCategory', productCategorySchema)
+export const ProductCategory =
+  mongoose.models.ProductCategory ||
+  mongoose.model("ProductCategory", productCategorySchema);

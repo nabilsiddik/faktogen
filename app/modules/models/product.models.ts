@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 
 const featureSchema = new mongoose.Schema({
     key: {type: String, required: true},
-    vlaue: {type: mongoose.Schema.Types.Mixed, required: true}
+    value: {type: mongoose.Schema.Types.Mixed, required: true}
 })
 
 const productSchema = new mongoose.Schema({
@@ -13,7 +13,7 @@ const productSchema = new mongoose.Schema({
     },
     featuredImage: {
         type: String,
-        required: true,
+        // required: true,
     },
     shortDescription: {
         type: String,
@@ -35,10 +35,10 @@ const productSchema = new mongoose.Schema({
     features: {
         type: [featureSchema],
         default: []
-    }
+    },
 }, {
     timestamps: true,
     versionKey: false
 })
 
-export default mongoose.models.Product || mongoose.model('Product', productSchema)
+export const Product = mongoose.models.Product || mongoose.model('Product', productSchema)

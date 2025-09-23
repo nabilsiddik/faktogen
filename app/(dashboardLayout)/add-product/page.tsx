@@ -1,13 +1,12 @@
 'use client'
 
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { zodResolver } from "@hookform/resolvers/zod"
 import z from 'zod'
 import { Button } from "@/components/ui/button"
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -17,33 +16,38 @@ import { Input } from '@/components/ui/input';
 import { useFieldArray, useForm } from 'react-hook-form'
 import { Textarea } from '@/components/ui/textarea'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-
-// Product zod schema
-export const productZodSchema = z.object({
-  title: z.string("Title is required"),
-  featuredImage: z.string("Featured image is required"),
-  shortDescription: z.string().optional(),
-  longDescription: z.string().optional(),
-  category: z.string("Category is required"),
-  oldPrice: z.number().optional(),
-  price: z.number("Price is required"),
-  features: z.array(
-    z.object({
-      key: z.string('Key Is Required'),
-      value: z.union([z.string(), z.number()])
-    })
-  ).optional()
-});
-
-
+import { productZodSchema } from '@/lib/validations/productZodSchema'
+import { createProduct } from '@/actions/create'
 
 const AddProduct = () => {
+  const [categories, setCategories] = useState<any>()
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const res = await fetch("/api/product-category");
+
+        const data: any = await res.json()
+        setCategories(data);
+      } catch (error: any) {
+        console.error("Failed to fetch categories", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchCategories()
+  }, [])
+
+  console.log(categories)
+
 
   const form = useForm<z.infer<typeof productZodSchema>>({
     resolver: zodResolver(productZodSchema),
     defaultValues: {
       title: "",
-      featuredImage: "",
+      // featuredImage: "",
       shortDescription: "",
       longDescription: "",
       category: "",
@@ -64,8 +68,14 @@ const AddProduct = () => {
   }
 
   // add product
-  const addNewProduct = (values: z.infer<typeof productZodSchema>) => {
-    console.log(values)
+  const addNewProduct = async (productData: z.infer<typeof productZodSchema>) => {
+    const res = await createProduct(productData)
+
+    if (res.success) {
+      console.log('success dsfsd', res.data)
+    } else {
+      console.log('failed', res.error)
+    }
   }
 
   return (
@@ -135,9 +145,14 @@ const AddProduct = () => {
                         <SelectValue placeholder="Select Category" />
                       </SelectTrigger>
                     </FormControl>
-                    <SelectContent>
-                      <SelectItem value="m@example.com">m@example.com</SelectItem>
-                    </SelectContent>
+
+                    {!loading &&
+                      <SelectContent>
+                        {categories?.data?.length > 0 && categories?.data?.map((category: any, index: number) =>
+                          <SelectItem key={index} value={category.name}>{category.name}</SelectItem>
+                        )}
+                      </SelectContent>
+                    }
                   </Select>
                   <FormMessage />
                 </FormItem>

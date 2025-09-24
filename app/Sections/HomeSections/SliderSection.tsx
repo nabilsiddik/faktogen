@@ -27,8 +27,6 @@ const SliderSection = () => {
             <Swiper
                 spaceBetween={50}
                 slidesPerView={1}
-            //   onSlideChange={() => console.log('slide change')}
-            //   onSwiper={(swiper) => console.log(swiper)}
             >
                 <SwiperSlide className='h-[600px]'>
                     <div className="h-[600px] w-full  pl-20  text-white flex flex-col gap-3 justify-center" style={{

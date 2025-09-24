@@ -11,5 +11,4 @@ export const createAccont = async(formData: FormData) => {
         body: JSON.stringify(userData),
     })
 
-    console.log(result)
 }

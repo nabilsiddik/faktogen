@@ -45,12 +45,12 @@ const AddProduct = () => {
 
   const {data: session} = useSession()
 
-  console.log(session)
-
   return (
     <div>
       <h1 className="px-5 font-bold text-center text-3xl">Add Products</h1>
-
+      <h1>{session?.user?.email}</h1>
+      <h1>{session?.user?.name}</h1>
+      <h1>{session?.expires}</h1>
       <div className='w-11/12 md:w-8/12 lg:w-6/12 xl:w-5/12 mx-auto'>
         <Form action={createProduct}>
           {/* Product Title */}

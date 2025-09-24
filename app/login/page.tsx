@@ -1,3 +1,4 @@
+'use client'
 import { useId } from "react"
 
 import { Button } from "@/components/ui/button"
@@ -6,9 +7,18 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import Link from "next/link"
 import { userLogin } from "../actions/userLogin"
+import { signIn } from "next-auth/react"
 
 export default function Login() {
     const id = useId()
+
+    // handle google login
+    const handleSocialLogin = (provider: 'google') => {
+        signIn(provider, {
+            callbackUrl: '/'
+        })
+    }
+
     return (
         <div className="container mx-auto px-5 flex items-center justify-center min-h-screen">
             <div className=" w-10/12 md:w-8/12 lg:w-6/12 xl:w-4/12 mx-auto border-1 shadow-md px-5 py-5 rounded-lg">
@@ -62,7 +72,7 @@ export default function Login() {
                     <span className="text-muted-foreground text-xs">Or</span>
                 </div>
 
-                <Button variant="outline" className='w-full'>Login with Google</Button>
+                <Button onClick={() => handleSocialLogin('google')} variant="outline" className='w-full'>Login with Google</Button>
 
                 <p className="mt-3 text-center">Don't have an account? <Link href='/signup' className="underline">Create an Account</Link></p>
             </div>

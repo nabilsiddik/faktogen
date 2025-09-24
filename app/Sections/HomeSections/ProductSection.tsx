@@ -1,11 +1,15 @@
 import { products } from '@/app/data/products'
+import { auth } from '@/auth'
 import ProductItemCard from '@/components/ProductItemCard'
 import { getAllProducts } from '@/utils/getAllProducts'
 
 const ProductSection = async() => {
 
     const allProducts = await getAllProducts() || []
-    console.log(allProducts)
+    
+    const session = await auth()
+
+    console.log('server comp', session)
 
     return (
         <section className='my-20'>

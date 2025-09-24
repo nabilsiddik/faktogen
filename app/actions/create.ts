@@ -7,7 +7,6 @@ import { connectDB } from "@/utils/db"
 
 // Create product action
 export const createProduct = async (data: FormData) => {
-    console.log(data)
     const productData = Object.fromEntries(data.entries())
     // parse json product data
     // const rawData = data.get('productData') as string

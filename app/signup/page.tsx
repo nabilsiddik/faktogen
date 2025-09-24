@@ -5,6 +5,7 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import Link from "next/link"
+import { createAccont } from "../actions/createAccount"
 
 export default function SignUp() {
     const id = useId()
@@ -15,20 +16,32 @@ export default function SignUp() {
                     <h1 className="font-bold text-2xl mb-3">Create Account</h1>
                     <p>Enter bellow information and create an account. If you already have an account, <Link href='/login' className="underline">Login Now</Link></p>
                 </div>
-                <form className="space-y-5">
+                <form action={createAccont} className="space-y-5">
                     <div className="space-y-4">
                         <div className="*:not-first:mt-2">
-                            <Label htmlFor={`${id}-email`}>Email</Label>
+                            <Label htmlFor={`${id}-fullName`}>Full Name <span className="text-red-500">*</span></Label>
                             <Input
+                                name='fullName'
+                                id={`${id}-fullName`}
+                                placeholder="Full Name"
+                                type="text"
+                                required
+                            />
+                        </div>
+                        <div className="*:not-first:mt-2">
+                            <Label htmlFor={`${id}-email`}>Email <span className="text-red-500">*</span></Label>
+                            <Input
+                            name='email'
                                 id={`${id}-email`}
-                                placeholder="hi@yourcompany.com"
+                                placeholder="example@gmail.com"
                                 type="email"
                                 required
                             />
                         </div>
                         <div className="*:not-first:mt-2">
-                            <Label htmlFor={`${id}-password`}>Password</Label>
+                            <Label htmlFor={`${id}-password`}>Password <span className="text-red-500">*</span></Label>
                             <Input
+                            name='password'
                                 id={`${id}-password`}
                                 placeholder="Enter your password"
                                 type="password"
@@ -50,7 +63,7 @@ export default function SignUp() {
                             Forgot password?
                         </a>
                     </div>
-                    <Button type="button" className="w-full">
+                    <Button type="submit" className="w-full">
                         Sign in
                     </Button>
                 </form>

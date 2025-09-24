@@ -19,8 +19,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { productZodSchema } from '@/lib/validations/productZodSchema'
 import { createProduct } from '@/app/actions/create'
 import ProductFeaturedImageUploader from '@/components/ProductFeaturedImageUploader'
-// import { createProduct } from '@/actions/create'
-// import ProductFeaturedImageUploader from '@/components/ProductFeaturedImageUploader'
+import { useSession } from './../../../node_modules/next-auth/react';
 
 const AddProduct = () => {
   const [categories, setCategories] = useState<any>()
@@ -44,47 +43,9 @@ const AddProduct = () => {
     fetchCategories()
   }, [])
 
+  const {data: session} = useSession()
 
-  // const form = useForm<z.infer<typeof productZodSchema>>({
-  //   resolver: zodResolver(productZodSchema),
-  //   defaultValues: {
-  //     title: "",
-  //     // featuredImage: "",
-  //     shortDescription: "",
-  //     longDescription: "",
-  //     category: "",
-  //     oldPrice: 0,
-  //     price: 0,
-  //     features: [],
-  //   }
-  // })
-
-  // const { fields, append, remove } = useFieldArray({
-  //   control: form.control,
-  //   name: 'features'
-  // })
-
-  // Add feature field
-  // const addFeature = () => {
-  //   append({ key: '', value: '' })
-  // }
-
-  // add product
-  // const addNewProduct = async (productData: z.infer<typeof productZodSchema>) => {
-  //   console.log('ami')
-  //   const formData = new FormData()
-  //   formData.append('productData', JSON.stringify(productData))
-  //   if (featuredImage) {
-  //     formData.append("featuredImage", featuredImage)
-  //   }
-  //   const res = await createProduct(formData)
-
-  //   if (res.success) {
-  //     console.log('success dsfsd', res.data)
-  //   } else {
-  //     console.log('failed', res.error)
-  //   }
-  // }
+  console.log(session)
 
   return (
     <div>

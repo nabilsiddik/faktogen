@@ -5,6 +5,7 @@ import { Checkbox } from "@/components/ui/checkbox"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import Link from "next/link"
+import { userLogin } from "../actions/userLogin"
 
 export default function Login() {
     const id = useId()
@@ -15,11 +16,12 @@ export default function Login() {
                     <h1 className="font-bold text-2xl mb-3">Credential Login</h1>
                     <p>Enter your email and password and login to your account. If you don't have account. <Link href='/signup' className="underline">Create an Account</Link></p>
                 </div>
-                <form className="space-y-5">
+                <form action={userLogin} className="space-y-5">
                     <div className="space-y-4">
                         <div className="*:not-first:mt-2">
                             <Label htmlFor={`${id}-email`}>Email</Label>
                             <Input
+                                name='email'
                                 id={`${id}-email`}
                                 placeholder="hi@yourcompany.com"
                                 type="email"
@@ -29,6 +31,7 @@ export default function Login() {
                         <div className="*:not-first:mt-2">
                             <Label htmlFor={`${id}-password`}>Password</Label>
                             <Input
+                                name='password'
                                 id={`${id}-password`}
                                 placeholder="Enter your password"
                                 type="password"
@@ -50,7 +53,7 @@ export default function Login() {
                             Forgot password?
                         </a>
                     </div>
-                    <Button type="button" className="w-full">
+                    <Button type="submit" className="w-full">
                         Sign in
                     </Button>
                 </form>

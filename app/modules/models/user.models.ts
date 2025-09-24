@@ -16,25 +16,17 @@ const cartItemSchema = new mongoose.Schema({
 })
 
 const userSchema = new mongoose.Schema({
-    firstName: {
+    fullName: {
         type: String,
         required: true,
     },
-    lastName: {
-        type: String,
-        required: true
-    },
     email: {
         type: String,
-        unique: true
-    },
-    phone: {
-        type: String,
-        unique: true
+        unique: true,
+        required: true
     },
     password: {
         type: String,
-        required: true
     },
     cart: [cartItemSchema],
     wishlist: [{type: mongoose.Schema.Types.ObjectId, ref: 'Product'}],
@@ -52,4 +44,4 @@ const userSchema = new mongoose.Schema({
     versionKey: false
 })
 
-export default mongoose.models.User || mongoose.model('User', userSchema)
+export const User = mongoose.models.User || mongoose.model('User', userSchema)

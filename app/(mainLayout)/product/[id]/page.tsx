@@ -7,7 +7,7 @@ import { IoIosArrowDown } from "react-icons/io";
 
 const page = async ({ params }: {params: {id: string}}) => {
 
-  const { id } = params
+  const { id } = await params
   const product = await Product.findOne({ _id: id })
 
   return (

@@ -4,6 +4,7 @@ import bcrypt from "bcryptjs"
 import { connectDB } from "./utils/db"
 import Google from "next-auth/providers/google"
 import { User } from "./app/modules/models/user.models"
+import { IUser } from "./interfaces/user.interface"
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
     providers: [
@@ -36,27 +37,50 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
                     }
 
                     console.log('server credtial res', res)
-                    
-                    const user = await res.json()
 
-                    if(user){
+                    const parsedResponse = await res.json()
+                    const user = parsedResponse.data
+
+                    console.log('my user', user)
+
+                    if (user) {
                         return {
                             id: user?._id,
                             name: user?.fullName,
                             email: user?.email,
-                            role: user?.role || 'USER'
+                            role: user?.role || 'USER',
+                            image: user?.picture
                         }
                     }
-                    else{
-                        return null
-                    }
+
+                    return null
+
 
                 } catch (error: any) {
                     console.error(error)
+                    return null
                 }
-                
+
             },
         }),
         Google
     ],
+    callbacks: {
+        async jwt({token, user}){
+            if(user){
+                token.id = user.id,
+                // @ts-ignore
+                token.role = user.role
+            }
+            return token
+        },
+        async session({session, token}){
+            if(session?.user){
+                session.user.id = token?.id as string
+                // @ts-ignore
+                session.user.role = token.role
+            }
+            return session
+        }
+    }
 })

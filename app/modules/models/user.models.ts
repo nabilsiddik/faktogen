@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { UserStatus } from "../interfaces/user.interfaces";
+import { UserRoles, UserStatus } from "../interfaces/user.interfaces";
 
 const cartItemSchema = new mongoose.Schema({
     product: {
@@ -11,7 +11,7 @@ const cartItemSchema = new mongoose.Schema({
         default: 1
     },
 },{
-    timestamps: true,
+    timestamps: false,
     versionKey: false
 })
 
@@ -33,6 +33,10 @@ const userSchema = new mongoose.Schema({
     status: {
         type: String,
         enum: Object.values(UserStatus)
+    },
+    role: {
+        type: String,
+        enum: Object.values(UserRoles)
     },
     isVerified: {
         type: Boolean,

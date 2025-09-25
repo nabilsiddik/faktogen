@@ -4,3 +4,8 @@ export enum UserStatus{
     RESTRICTED = 'RESTRICTED',
     DELETED = 'DELETED'
 }
+
+export enum UserRoles{
+    USER = 'USER',
+    ADMIN = 'ADMIN'
+}

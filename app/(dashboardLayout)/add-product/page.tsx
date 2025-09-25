@@ -45,6 +45,9 @@ const AddProduct = () => {
 
   const {data: session} = useSession()
 
+  console.log(session)
+  
+
   return (
     <div>
       <h1 className="px-5 font-bold text-center text-3xl">Add Products</h1>

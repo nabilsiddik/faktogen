@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Montserrat, Roboto } from "next/font/google";
 import "./globals.css";
-import Header from "../layouts/Header";
+import { Toaster } from "@/components/ui/sonner"
 
 const montserrat = Montserrat({
   variable: "--font-geist-sans",
@@ -30,6 +30,7 @@ export default function RootLayout({
       <body
         className={`${montserrat.className} antialiased`}
       >
+        <Toaster richColors position="top-right" />
         {children}
       </body>
     </html>

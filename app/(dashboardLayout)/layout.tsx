@@ -5,7 +5,7 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar"
 import { Separator } from "@/components/ui/separator"
-import Provider from "@/providers/provider";
+import AuthProvider from "@/providers/AuthProvider";
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -21,9 +21,9 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
             />
           </div>
         </header>
-        <Provider>
+        <AuthProvider>
           {children}
-        </Provider>
+        </AuthProvider>
       </SidebarInset>
     </SidebarProvider>
   );

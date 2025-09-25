@@ -1,12 +1,35 @@
+import { auth } from "@/auth";
 import HeaderSearch from "@/components/HeaderSearch"
 import Logo from "@/components/Logo"
 import Link from "next/link"
 import { FaRegHeart } from "react-icons/fa";
 import { FiUser } from "react-icons/fi";
 import { MdOutlineShoppingCart } from "react-icons/md";
+import { IoIosArrowDown } from "react-icons/io";
+import { MdOutlineDashboard } from "react-icons/md";
+import { CgProfile } from "react-icons/cg";
+import { CiCircleList } from "react-icons/ci";
+import { RxExit } from "react-icons/rx";
+import { MdOutlineAccountCircle } from "react-icons/md";
 
 
-const Header = () => {
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuShortcut,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+import LogoutButton from "@/components/LogoutButton";
+
+
+const Header = async () => {
+
+  const session = await auth()
+
   return (
     <header className="bg-primary h-[90px] flex items-center mx-auto px-10 gap-10 mb-5">
       <div className="flex-2">
@@ -29,17 +52,6 @@ const Header = () => {
             </Link>
           </li>
           <li>
-            <Link href={'/'} className="flex items-center gap-2">
-              <div className="text-2xl">
-                <FiUser />
-              </div>
-              <div className="flex flex-col">
-                <span className="text-sm">Sign In</span>
-                <span className="font-bold text-sm">Account</span>
-              </div>
-            </Link>
-          </li>
-          <li>
             <div className="text-2xl border-white flex flex-col items-center">
               <div className="relative">
                 <MdOutlineShoppingCart />
@@ -48,6 +60,67 @@ const Header = () => {
               <span className="text-sm">BDT 1000</span>
             </div>
           </li>
+          <li>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Link href={'/'} className="flex items-center gap-2">
+                  <div className="text-2xl">
+                    <FiUser />
+                  </div>
+                  <div className="flex flex-col">
+                    <span className="text-sm">Account</span>
+                    <span className="font-bold text-sm">Settings</span>
+                  </div>
+
+                  <div>
+                    <IoIosArrowDown />
+                  </div>
+                </Link>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="w-56" align="start">
+                <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                {session?.user &&
+                  <DropdownMenuGroup>
+                    <DropdownMenuItem>
+                      Dashboard
+                      <DropdownMenuShortcut>
+                        <MdOutlineDashboard />
+                      </DropdownMenuShortcut>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem>
+                      Profile
+                      <DropdownMenuShortcut>
+                        <CgProfile />
+                      </DropdownMenuShortcut>
+                    </DropdownMenuItem>
+                    <DropdownMenuItem>
+                      My Orders
+                      <DropdownMenuShortcut>
+                        <CiCircleList />
+                      </DropdownMenuShortcut>
+                    </DropdownMenuItem>
+                  </DropdownMenuGroup>
+                }
+                <DropdownMenuSeparator />
+                {session?.user ?
+                  <DropdownMenuItem>
+                    <LogoutButton/>
+                    <DropdownMenuShortcut>
+                      <RxExit />
+                    </DropdownMenuShortcut>
+                  </DropdownMenuItem>
+                  :
+                  <DropdownMenuItem>
+                    <Link href='/signup'>Create Account</Link>
+                    <DropdownMenuShortcut>
+                      <MdOutlineAccountCircle />
+                    </DropdownMenuShortcut>
+                  </DropdownMenuItem>
+                }
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </li>
+
         </ul>
       </div>
     </header>

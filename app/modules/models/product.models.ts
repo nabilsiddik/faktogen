@@ -43,6 +43,14 @@ const productSchema = new mongoose.Schema({
         type: [featureSchema],
         default: []
     },
+    isOnCart: {
+        type: Boolean,
+        default: false
+    },
+    isOnWishlist: {
+        type: Boolean,
+        default: false
+    }
 }, {
     timestamps: true,
     versionKey: false

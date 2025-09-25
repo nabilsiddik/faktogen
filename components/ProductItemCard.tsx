@@ -1,6 +1,6 @@
 'use client'
 import Image from 'next/image'
-import React from 'react'
+import React, { useState } from 'react'
 import { Button } from './ui/button'
 import { FaRegHeart } from "react-icons/fa";
 import StarRatings from 'react-star-ratings';
@@ -9,6 +9,8 @@ import Link from 'next/link';
 import { Iproduct } from '@/interfaces/product.interface';
 
 const ProductItemCard = ({ product }: { product: Iproduct }) => {
+
+    const [isOnCart, setIsOnCart] = useState(product?.isOnCart);
 
     // Add to cart product
     const handleAddToCart = async (productId: string) => {
@@ -21,8 +23,12 @@ const ProductItemCard = ({ product }: { product: Iproduct }) => {
             body: JSON.stringify({
                 productId,
                 quantity: 1
-            }) 
+            })
         })
+
+        if (res.ok) {
+            setIsOnCart(true)
+        }
 
         console.log(res)
     }
@@ -40,7 +46,11 @@ const ProductItemCard = ({ product }: { product: Iproduct }) => {
             </Link>
 
             {/* add to cart button  */}
-            <Button onClick={() => handleAddToCart(product?._id as string)} className='rounded-full cursor-pointer my-3'>Add Cart</Button>
+            {isOnCart ?
+                <Button onClick={() => handleAddToCart(product?._id as string)} className='rounded-full cursor-pointer my-3'>Added</Button>
+                :
+                <Button onClick={() => handleAddToCart(product?._id as string)} className='rounded-full cursor-pointer my-3'>Add Cart</Button>
+            }
 
             {/* title, description, price */}
             <div className='mt-3 flex flex-col gap-2  text-sm'>

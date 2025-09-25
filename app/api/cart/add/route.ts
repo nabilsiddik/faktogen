@@ -1,3 +1,4 @@
+import { Product } from "@/app/modules/models/product.models";
 import { User } from "@/app/modules/models/user.models"
 import { auth } from "@/auth"
 import { connectDB } from "@/utils/db";
@@ -11,6 +12,21 @@ export async function POST(req: Request) {
         const session = await auth()
         const userId = session?.user?.id
 
+
+        // Make is on cart true
+        const product = await Product.findOne({ _id: productId })
+
+        if (!product) {
+            return NextResponse.json({
+                success: false,
+                errorMessage: 'Product not found'
+            }, { status: 404 })
+        }
+
+        product.isOnCart = true
+        await product.save()
+
+
         // Find logged in user
         const user = await User.findOne({ _id: userId })
 
@@ -21,10 +37,10 @@ export async function POST(req: Request) {
             }, { status: 404 })
         }
 
-        const alreadyOnCart = user?.cart?.find((cartItem: {product: string, quantity: number}) => productId.toString() === cartItem?.product.toString())
+        const alreadyOnCart = user?.cart?.find((cartItem: { product: string, quantity: number }) => productId.toString() === cartItem?.product.toString())
 
         // If already on cart just increase the quantity
-        if(alreadyOnCart){
+        if (alreadyOnCart) {
             alreadyOnCart.quantity += quantity
             user.save()
 
@@ -45,10 +61,10 @@ export async function POST(req: Request) {
 
 
         return NextResponse.json({
-                success: true,
-                message: 'Product successfully Added to cart.',
-                data: user?.cart
-            }, { status: 200 })
+            success: true,
+            message: 'Product successfully Added to cart.',
+            data: user?.cart
+        }, { status: 200 })
 
     } catch (error: unknown) {
         console.log(error)

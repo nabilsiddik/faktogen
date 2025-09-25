@@ -12,7 +12,9 @@ export interface Iproduct {
     category: string,
     oldPrice: number,
     price: number,
-    features: IFeature[]
+    features: IFeature[],
+    isOnCart?: boolean,
+    isOnWishlist?: boolean
 }
 
 export interface IProductCategory{

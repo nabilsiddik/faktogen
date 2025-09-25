@@ -7,7 +7,7 @@ const featureSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.Mixed,
         required: true,
         validate: {
-            validator: (v: any) => typeof v === 'string' || typeof v === 'number',
+            validator: (v: unknown) => typeof v === 'string' || typeof v === 'number',
             message: "Value must be either a string or a number"
         }
     }

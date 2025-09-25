@@ -5,7 +5,7 @@ import Image from "next/image"
 import { IoIosArrowDown } from "react-icons/io";
 
 
-const page = async ({ params }: any) => {
+const page = async ({ params }: {params: {id: string}}) => {
 
   const { id } = params
   const product = await Product.findOne({ _id: id })

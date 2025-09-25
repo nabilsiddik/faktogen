@@ -42,7 +42,7 @@ export default function SignUp() {
                 toast.success('Account created Successfully.')
                 router.push('/login')
             }
-        } catch (error: any) {
+        } catch (error: unknown) {
             console.error(error)
             toast.error('Something went wrong while account creation')
         }

@@ -1,28 +1,17 @@
 'use client'
 
 import React, { useEffect, useState } from 'react'
-import { zodResolver } from "@hookform/resolvers/zod"
-import z from 'zod'
-import { Button } from "@/components/ui/button"
-import {
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form"
 import Form from 'next/form'
 import { Input } from '@/components/ui/input';
-import { useFieldArray, useForm } from 'react-hook-form'
 import { Textarea } from '@/components/ui/textarea'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { productZodSchema } from '@/lib/validations/productZodSchema'
 import { createProduct } from '@/app/actions/create'
 import ProductFeaturedImageUploader from '@/components/ProductFeaturedImageUploader'
 import { useSession } from './../../../node_modules/next-auth/react';
+import { IProductCategory } from '@/interfaces/product.interface';
 
 const AddProduct = () => {
-  const [categories, setCategories] = useState<any>()
+  const [categories, setCategories] = useState<IProductCategory[]>([])
   const [loading, setLoading] = useState(true);
   const [featuredImage, setFeaturedImage] = useState<File | null>(null)
 
@@ -30,10 +19,11 @@ const AddProduct = () => {
     const fetchCategories = async () => {
       try {
         const res = await fetch("/api/product-category");
+        const data= await res.json()
 
-        const data: any = await res.json()
-        setCategories(data);
-      } catch (error: any) {
+        setCategories(data.data);
+
+      } catch (error: unknown) {
         console.error("Failed to fetch categories", error);
       } finally {
         setLoading(false);
@@ -44,9 +34,6 @@ const AddProduct = () => {
   }, [])
 
   const {data: session} = useSession()
-
-  console.log(session)
-  
 
   return (
     <div>
@@ -88,7 +75,7 @@ const AddProduct = () => {
               </SelectTrigger>
               {!loading && (
                 <SelectContent>
-                  {categories?.data?.map((cat: any, idx: number) => (
+                  {categories?.map((cat: IProductCategory, idx: number) => (
                     <SelectItem key={idx} value={cat.name}>
                       {cat.name}
                     </SelectItem>

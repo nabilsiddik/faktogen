@@ -45,7 +45,7 @@ export default function Login() {
             })
             
             console.log('client res', res)
-        }catch(error: any){
+        }catch(error: unknown){
             console.error(error)
         }
     }
@@ -56,7 +56,7 @@ export default function Login() {
                 <div className="text-center mb-5">
                     <h1 className="font-bold text-2xl mb-3">Credential Login</h1>
                     <p>
-                        Enter your email and password to login. Don't have an account?{" "}
+                        Enter your email and password to login. Dont have an account?{" "}
                         <Link href="/signup" className="underline">
                             Create an Account
                         </Link>
@@ -120,7 +120,7 @@ export default function Login() {
                 </Button>
 
                 <p className="mt-3 text-center">
-                    Don't have an account?{" "}
+                    Dont have an account?{" "}
                     <Link href="/signup" className="underline">
                         Create an Account
                     </Link>

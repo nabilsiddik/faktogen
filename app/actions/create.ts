@@ -32,7 +32,7 @@ export const createProduct = async (data: FormData) => {
         await connectDB()
         await Product.create(productData)
         console.log('Product created successfully')
-    } catch (error: any) {
-        console.log('Error creating product:', error.message)
+    } catch (error: unknown) {
+        console.log('Error creating product:', error)
     }
 }

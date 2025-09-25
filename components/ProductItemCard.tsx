@@ -6,8 +6,9 @@ import { FaRegHeart } from "react-icons/fa";
 import StarRatings from 'react-star-ratings';
 import { shortText } from '@/utils/shortText';
 import Link from 'next/link';
+import { Iproduct } from '@/interfaces/product.interface';
 
-const ProductItemCard = ({ product }: any) => {
+const ProductItemCard = ({ product }: {product: Iproduct}) => {
     return (
         <Link href={`/product/${product._id}`}>
             <div className='relative bg-gray-50 px-3 py-3 rounded-sm shadow-sm'>

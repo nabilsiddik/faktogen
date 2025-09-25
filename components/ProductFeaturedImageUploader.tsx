@@ -4,9 +4,9 @@ import { AlertCircleIcon, ImageIcon, UploadIcon, XIcon } from "lucide-react"
 
 import { useFileUpload } from "@/hooks/use-file-upload"
 import { Button } from "@/components/ui/button"
-import { useEffect } from "react"
+import { Dispatch, SetStateAction, useEffect } from "react"
 
-export default function ProductFeaturedImageUploader({onChange}: any) {
+export default function ProductFeaturedImageUploader({onChange}: {onChange: Dispatch<SetStateAction<File | null>>}) {
   const maxSizeMB = 2
   const maxSize = maxSizeMB * 1024 * 1024 // 2MB default
 
@@ -31,7 +31,7 @@ export default function ProductFeaturedImageUploader({onChange}: any) {
   // Get featured image
   useEffect(() => {
     if(files.length > 0){
-      onChange(files[0].file)
+      onChange(files[0].file as File)
     }else{
       onChange(null)
     }

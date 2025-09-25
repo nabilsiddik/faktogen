@@ -19,9 +19,9 @@ export async function POST(req: Request) {
 
         return NextResponse.json({ success: true, data: categoryRes }, { status: 201 })
 
-    } catch (error: any) {
+    } catch (error: unknown) {
         return NextResponse.json(
-            { success: false, error: error.message },
+            { success: false, error: error },
             { status: 500 }
         )
     }
@@ -35,7 +35,7 @@ export async function GET() {
         await connectDB()
         const categories = await ProductCategory.find()
         return NextResponse.json({ success: true, message: 'All categories retrived', data: categories }, { status: 200 })
-    }catch(error: any){
-        return NextResponse.json({success: false, message: error.message}, {status: 500})
+    }catch(error: unknown){
+        return NextResponse.json({success: false, message: error}, {status: 500})
     }
 } 

@@ -22,8 +22,8 @@ export async function POST(req: Request){
 
         return NextResponse.json({success: true, message: 'User login successful', data: user}, {status: 200})
 
-    }catch(error: any){
+    }catch(error: unknown){
         console.log(error)
-        return NextResponse.json({success: false, message: error.message}, {status: 500})
+        return NextResponse.json({success: false, message: error}, {status: 500})
     }
 }

@@ -12,9 +12,9 @@ interface IProductItem {
     quantity: number
 }
 
-export const getCartTotal = async () => {
-    const cartProducts = await getCartProducts()
 
+export const getCartTotal = async (cartProducts: IProductItem[]) => {
+    
     const cartTotal = cartProducts.reduce((acc: number, productItem: IProductItem) => {
         return acc + (productItem?.product?.price * productItem.quantity)
     }, 0)

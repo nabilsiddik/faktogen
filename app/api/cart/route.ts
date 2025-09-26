@@ -2,6 +2,8 @@ import { Product } from "@/app/modules/models/product.models";
 import { User } from "@/app/modules/models/user.models"
 import { auth } from "@/auth"
 import { connectDB } from "@/utils/db";
+import { getCartProducts } from "@/utils/GetCartProducts";
+import { removeProductFromCart } from "@/utils/removeProductFromCart";
 import { NextResponse } from "next/server"
 
 export async function POST(req: Request) {
@@ -72,6 +74,46 @@ export async function POST(req: Request) {
             success: false,
             error: error,
             errorMessage: 'Add to cart failed'
+        }, { status: 500 })
+    }
+}
+
+// Get cart products
+export async function GET() {
+    try {
+        const cartProducts = await getCartProducts()
+        return NextResponse.json({
+            success: true,
+            message: 'Cart product retrived successfully.',
+            data: cartProducts
+        }, { status: 200 })
+    } catch (error: unknown) {
+        return NextResponse.json({
+            success: false,
+            error,
+            errorMessage: 'Failed to retrive cart product'
+        }, { status: 500 })
+    }
+}
+
+
+// Remove cart products
+export async function DELETE(req: Request) {
+    const {productId} = await req.json()
+    try {
+        const updatedCart = await removeProductFromCart(productId)
+
+        return NextResponse.json({
+            success: true,
+            message: 'Cart Item Removed.',
+            data: updatedCart
+        }, { status: 200 })
+
+    } catch (error: unknown) {
+        return NextResponse.json({
+            success: false,
+            error,
+            errorMessage: 'Failed remove cart product'
         }, { status: 500 })
     }
 }

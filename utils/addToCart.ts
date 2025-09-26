@@ -4,7 +4,7 @@ import { Dispatch, SetStateAction } from "react"
 
 // Add to cart product
  export const handleAddToCart = async (productId: string, setIsOnCart?: Dispatch<SetStateAction<boolean | undefined>>) => {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/cart/add`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/cart`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

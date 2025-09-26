@@ -1,12 +1,12 @@
 import { Product } from "@/app/modules/models/product.models"
+import AddToCartButton from "@/components/AddToCartButton";
 import { Badge } from "@/components/ui/badge"
-import { Button } from "@/components/ui/button";
+import { Iproduct } from "@/interfaces/product.interface";
 import Image from "next/image"
 import { IoIosArrowDown } from "react-icons/io";
 
 
-const page = async ({ params }: {params: {id: string}}) => {
-
+const ProductDetails = async ({ params }: { params: { id: string } }) => {
   const { id } = await params
   const product = await Product.findOne({ _id: id })
 
@@ -34,22 +34,23 @@ const page = async ({ params }: {params: {id: string}}) => {
       </div>
 
       <div className="flex-1 text-sm flex flex-col gap-2 bg-gray-100 py-3 px-3 rounded-md">
-         <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3">
           <h2 className="font-bold text-primary text-2xl">BDT {product?.price}</h2>
           <del>BDT {product?.oldPrice}</del>
-         </div>
+        </div>
 
-         <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3">
           <Badge>You Save</Badge>
           <span>BDT {product?.oldPrice - product?.price}</span>
-         </div>
+        </div>
 
-         <div>
-          <Button className='rounded-full mt-3 w-full' size={'lg'}>Add to Cart</Button>
-         </div>
+        <div>
+          <AddToCartButton product={product} classNames="rounded-full w-full mt-5"/>
+
+        </div>
       </div>
     </div>
   )
 }
 
-export default page
+export default ProductDetails

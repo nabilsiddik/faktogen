@@ -7,31 +7,12 @@ import StarRatings from 'react-star-ratings';
 import { shortText } from '@/utils/shortText';
 import Link from 'next/link';
 import { Iproduct } from '@/interfaces/product.interface';
+import { handleAddToCart } from '@/utils/addToCart';
+import AddToCartButton from './AddToCartButton';
 
 const ProductItemCard = ({ product }: { product: Iproduct }) => {
 
     const [isOnCart, setIsOnCart] = useState(product?.isOnCart);
-
-    // Add to cart product
-    const handleAddToCart = async (productId: string) => {
-        console.log(productId)
-        const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/cart/add`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                productId,
-                quantity: 1
-            })
-        })
-
-        if (res.ok) {
-            setIsOnCart(true)
-        }
-
-        console.log(res)
-    }
 
     return (
         <div className='relative bg-gray-50 px-3 py-3 rounded-sm shadow-sm'>
@@ -46,11 +27,12 @@ const ProductItemCard = ({ product }: { product: Iproduct }) => {
             </Link>
 
             {/* add to cart button  */}
-            {isOnCart ?
-                <Button onClick={() => handleAddToCart(product?._id as string)} className='rounded-full cursor-pointer my-3'>Added</Button>
+            {/* {isOnCart ?
+                <Button className='rounded-full cursor-pointer my-3'>Added</Button>
                 :
-                <Button onClick={() => handleAddToCart(product?._id as string)} className='rounded-full cursor-pointer my-3'>Add Cart</Button>
-            }
+                <Button onClick={() => handleAddToCart(product?._id as string, setIsOnCart)} className='rounded-full cursor-pointer my-3'>Add Cart</Button>
+            } */}
+            <AddToCartButton product={product} classNames='rounded-full mt-3'/>
 
             {/* title, description, price */}
             <div className='mt-3 flex flex-col gap-2  text-sm'>

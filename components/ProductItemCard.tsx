@@ -1,18 +1,14 @@
 'use client'
+
 import Image from 'next/image'
-import React, { useState } from 'react'
-import { Button } from './ui/button'
 import { FaRegHeart } from "react-icons/fa";
 import StarRatings from 'react-star-ratings';
 import { shortText } from '@/utils/shortText';
 import Link from 'next/link';
 import { Iproduct } from '@/interfaces/product.interface';
-import { handleAddToCart } from '@/utils/addToCart';
 import AddToCartButton from './AddToCartButton';
 
 const ProductItemCard = ({ product }: { product: Iproduct }) => {
-
-    const [isOnCart, setIsOnCart] = useState(product?.isOnCart);
 
     return (
         <div className='relative bg-gray-50 px-3 py-3 rounded-sm shadow-sm'>

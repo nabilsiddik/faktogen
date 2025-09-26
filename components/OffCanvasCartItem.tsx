@@ -4,8 +4,6 @@ import React from 'react'
 import { IoMdClose } from "react-icons/io";
 
 const OffCanvasCartItem = (productItem: any) => {
-    
-    console.log('amar pro', productItem?.productItem?.product?._id)
 
     // Remove cart item
     const handleRemoveCartItem = async(productId: string) => {

@@ -1,4 +1,4 @@
-export interface IFeature{
+export interface IFeature {
     key: string,
     value: string | number
 }
@@ -17,7 +17,13 @@ export interface Iproduct {
     isOnWishlist?: boolean
 }
 
-export interface IProductCategory{
+export interface IProductCategory {
     _id?: string,
     name: string
+}
+
+export interface ICartProduct {
+    _id: string,
+    quantity: number,
+    product: Partial<Iproduct>
 }

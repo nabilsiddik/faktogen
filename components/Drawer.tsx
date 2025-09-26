@@ -35,7 +35,7 @@ export const OffcanvasCart = ({ children }: { children: React.ReactNode }) => {
 
 
         fetchCart()
-    }, [cartProducts])
+    }, [])
 
 
     useEffect(() => {

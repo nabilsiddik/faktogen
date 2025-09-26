@@ -5,6 +5,10 @@ export const getCartProducts = async() => {
     const session = await auth()
     const userId = session?.user?.id 
 
+    if(!userId){
+        throw new Error('User is not authenticated.')
+    }
+
     const user = await User.findOne({_id: userId}).populate({
         path: 'cart.product',
         select: '_id title price featuredImage'
